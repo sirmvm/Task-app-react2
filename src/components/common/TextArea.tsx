@@ -26,7 +26,8 @@ export default function TextArea({
       <textarea
         id={name}
         name={name}
-        className="block w-full rounded p-2 mt-1 bg-slate-800"
+        // max-h-[340px] min-h-[100px] => permite que el textarea crezca hasta 340px y no más
+        className="block w-full rounded p-2 mt-1 bg-slate-800 focus:ring-1 focus:ring-primary-600 focus:outline-none max-h-[340px] min-h-[100px]"
         value={value}
         onChange={onChange}
         onBlur={onBlur}

@@ -29,7 +29,7 @@ export default function TextInput({
         type={type}
         id={name}
         name={name}
-        className="block w-full rounded p-2 mt-1 bg-slate-800"
+        className="block w-full rounded p-2 mt-1 bg-slate-800 focus:ring-1 focus:ring-primary-600 focus:outline-none"
         value={value}
         onChange={onChange}
         onBlur={onBlur}
