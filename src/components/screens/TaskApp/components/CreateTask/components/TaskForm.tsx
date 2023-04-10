@@ -12,7 +12,8 @@ interface Props {
 export default function TaskForm({ onClose, onSubmit }: Props) {
   const {
     handleSubmit,
-    register
+    register,
+    errors
   } = useTaskFrom({ onSubmit })
   return (
     // gap-2 es una clase de tailwind que agrega un espacio entre los elementos
@@ -22,12 +23,15 @@ export default function TaskForm({ onClose, onSubmit }: Props) {
         label="Title"
         placeholder="Enter a title"
         register={register}
+        error={errors.title}
+
       />
       <TextArea
         name="body"
         label="TextArea"
         placeholder="Enter a body"
         register={register}
+        error={errors.body}
       />
       <div className="flex gap-2">
         <Button type="submit">

@@ -1,5 +1,5 @@
 import React from 'react'
-import { FieldValues, Path, UseFormRegister } from 'react-hook-form'
+import { FieldError, FieldValues, Path, UseFormRegister } from 'react-hook-form'
 import InputLayout from './InputLayout'
 
 interface Props<T extends FieldValues> {
@@ -7,18 +7,21 @@ interface Props<T extends FieldValues> {
   placeholder?: string
   label?: string
   register: UseFormRegister<T>
+  error?: FieldError
 }
 
 export default function TextArea<T extends FieldValues>({
   name,
   placeholder,
   label,
-  register
+  register,
+  error
 }: Props<T>) {
   return (
     <InputLayout
       name={name}
       label={label}
+      errorMessage={error?.message}
     >
       <textarea
         id={name}

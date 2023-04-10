@@ -1,5 +1,5 @@
 import React from 'react'
-import { UseFormRegister, FieldValues, Path } from 'react-hook-form'
+import { UseFormRegister, FieldValues, Path, FieldError } from 'react-hook-form'
 import InputLayout from './InputLayout'
 
 // <T> es un generic type que permite que el componente sea reutilizable
@@ -9,6 +9,7 @@ interface Props<T extends FieldValues> {
   placeholder?: string
   register: UseFormRegister<T>
   label?: string
+  error?: FieldError
 }
 
 export default function TextInput<T extends FieldValues>({
@@ -16,12 +17,14 @@ export default function TextInput<T extends FieldValues>({
   type = 'text',
   placeholder,
   label,
-  register
+  register,
+  error
 }: Props<T>) {
   return (
     <InputLayout
       name={name}
       label={label}
+      errorMessage={error?.message}
     >
       <input
         type={type}

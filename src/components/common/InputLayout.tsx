@@ -4,9 +4,10 @@ interface Props {
   children: React.ReactNode
   name: string
   label?: string
+  errorMessage?: string
 }
 
-export default function InputLayout({ children, name, label }: Props) {
+export default function InputLayout({ children, name, label, errorMessage }: Props) {
   return (
     // Si viene un label recien mostrar
     <div>
@@ -16,6 +17,9 @@ export default function InputLayout({ children, name, label }: Props) {
       </label>
       )}
       {children}
+      {errorMessage && (
+        <p className="text-xs text-red-500 mt-1">{errorMessage}</p>
+      )}
     </div>
   )
 }
