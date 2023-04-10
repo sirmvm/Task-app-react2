@@ -1,25 +1,23 @@
 import React from 'react'
+import { UseFormRegister, FieldValues, Path } from 'react-hook-form'
 import InputLayout from './InputLayout'
 
-interface Props {
-  name: string
+// <T> es un generic type que permite que el componente sea reutilizable
+interface Props<T extends FieldValues> {
+  name: Path<T>
   type?: HTMLInputElement['type']
-  value?: string
   placeholder?: string
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
+  register: UseFormRegister<T>
   label?: string
 }
 
-export default function TextInput({
+export default function TextInput<T extends FieldValues>({
   name,
   type = 'text',
-  value,
-  onChange,
-  onBlur,
   placeholder,
-  label
-}: Props) {
+  label,
+  register
+}: Props<T>) {
   return (
     <InputLayout
       name={name}
@@ -28,13 +26,11 @@ export default function TextInput({
       <input
         type={type}
         id={name}
-        name={name}
         className="block w-full rounded p-2 mt-1 bg-slate-800 focus:ring-1 focus:ring-primary-600 focus:outline-none"
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
         placeholder={placeholder}
-        />
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...register(name)}
+      />
     </InputLayout>
   )
 }

@@ -1,23 +1,20 @@
 import React from 'react'
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form'
 import InputLayout from './InputLayout'
 
-interface Props {
-  name: string
-  value?: string
+interface Props<T extends FieldValues> {
+  name: Path<T>
   placeholder?: string
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void
   label?: string
+  register: UseFormRegister<T>
 }
 
-export default function TextArea({
+export default function TextArea<T extends FieldValues>({
   name,
-  value,
-  onChange,
-  onBlur,
   placeholder,
-  label
-}: Props) {
+  label,
+  register
+}: Props<T>) {
   return (
     <InputLayout
       name={name}
@@ -25,13 +22,11 @@ export default function TextArea({
     >
       <textarea
         id={name}
-        name={name}
         // max-h-[340px] min-h-[100px] => permite que el textarea crezca hasta 340px y no más
         className="block w-full rounded p-2 mt-1 bg-slate-800 focus:ring-1 focus:ring-primary-600 focus:outline-none max-h-[340px] min-h-[100px]"
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
         placeholder={placeholder}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...register(name)}
       />
     </InputLayout>
   )
